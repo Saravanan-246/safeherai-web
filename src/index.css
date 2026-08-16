@@ -1,0 +1,535 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* =========================================================
+   SafeHerAI — Global Design System
+   Clean product UI / desktop + mobile
+   ========================================================= */
+
+:root {
+  /* -------------------------------------------------------
+     Typography
+     ------------------------------------------------------- */
+
+  --font-ui:
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-family: var(--font-ui);
+
+  /* -------------------------------------------------------
+     Brand
+     ------------------------------------------------------- */
+
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+
+  /* -------------------------------------------------------
+     Neutral
+     ------------------------------------------------------- */
+
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  /* -------------------------------------------------------
+     Semantic
+     ------------------------------------------------------- */
+
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --surface-soft: #fbfdff;
+
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  /* -------------------------------------------------------
+     Rendering
+     ------------------------------------------------------- */
+
+  color: var(--text);
+  background: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--background);
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  background: var(--background);
+  color: var(--text);
+
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+
+  /* Prevent accidental browser overscroll on app UI */
+  overscroll-behavior-x: none;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   APP SURFACE
+   ========================================================= */
+
+.app-root {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.app-screen {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code,
+pre,
+kbd,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+code,
+pre {
+  overflow-wrap: anywhere;
+}
+
+.font-mono,
+[data-mono="true"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input,
+textarea,
+select {
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--slate-400);
+  opacity: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+/*
+   Keep keyboard accessibility globally.
+
+   Individual components such as RouteSearch can override
+   this with focus:outline-none / focus:ring-0 when their
+   visual focus is handled by the outer component.
+*/
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgb(59 130 246 / 42%);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--blue-100);
+  color: #1e3a8a;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--slate-50);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--slate-300);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-400);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-300) var(--slate-50);
+}
+
+/* =========================================================
+   GLOBAL CONTAINER
+   ========================================================= */
+
+.container-main {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* =========================================================
+   MOBILE SAFE AREA
+   ========================================================= */
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-bottom-space {
+  padding-bottom: calc(
+    1rem + env(safe-area-inset-bottom)
+  );
+}
+
+/* =========================================================
+   GLOBAL UTILITIES
+   ========================================================= */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* =========================================================
+   SUBTLE MOTION
+   ========================================================= */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2s ease-in-out infinite;
+}
+
+/* =========================================================
+   LEAFLET
+   Keep the real map visually aligned with our UI.
+   ========================================================= */
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+
+  font-family: var(--font-ui);
+  background: var(--slate-100);
+}
+
+.leaflet-container a {
+  color: inherit;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 14px rgb(15 23 42 / 8%) !important;
+}
+
+.leaflet-control-zoom a {
+  width: 36px !important;
+  height: 36px !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  border: 0 !important;
+
+  background: rgb(255 255 255 / 95%) !important;
+  color: var(--slate-600) !important;
+
+  font-family: var(--font-ui) !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--slate-50) !important;
+  color: var(--slate-950) !important;
+}
+
+.leaflet-control-attribution {
+  border-radius: 8px 0 0 0;
+
+  background: rgb(255 255 255 / 88%) !important;
+  color: var(--slate-500) !important;
+
+  font-family: var(--font-ui);
+  font-size: 9px !important;
+
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--blue-600) !important;
+}
+
+.leaflet-bar {
+  border: 0 !important;
+}
+
+/* Remove Leaflet's default focus outline from
+   map controls because our app uses its own states. */
+
+.leaflet-container :focus {
+  outline: none;
+}
+
+.leaflet-container :focus-visible {
+  outline: 2px solid rgb(59 130 246 / 38%);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   MAP MARKERS
+   ========================================================= */
+
+.safeherai-map-marker {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .container-main {
+    width: min(100% - 36px, 1180px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 64px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .container-main {
+    width: calc(100% - 28px);
+  }
+
+  .leaflet-container {
+    min-height: 360px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .container-main {
+    width: calc(100% - 24px);
+  }
+
+  .leaflet-container {
+    min-height: 320px;
+  }
+}
