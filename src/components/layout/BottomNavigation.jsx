@@ -5,7 +5,6 @@ import {
   Shield,
   User,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 
 const navigationItems = [
   {
@@ -35,66 +34,44 @@ const navigationItems = [
   },
 ];
 
-function BottomNavigation() {
-  const location = useLocation();
-
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
-
+function BottomNavigation({ activePath = "/home" }) {
   return (
     <nav
-      aria-label="Mobile navigation"
-      className={[
-        "fixed inset-x-0 bottom-0 z-[60]",
-        "border-t border-slate-200",
-        "bg-white/95 backdrop-blur-xl",
-        "lg:hidden",
-        "pb-[env(safe-area-inset-bottom)]",
-      ].join(" ")}
+      aria-label="Primary navigation"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
     >
-      <div className="mx-auto flex h-16 w-full max-w-lg items-stretch px-1.5">
+      <div className="mx-auto flex h-16 max-w-lg items-center justify-around">
         {navigationItems.map((item) => {
           const Icon = item.icon;
-          const active = isActive(item.path);
+          const isActive = activePath === item.path;
 
           return (
-            <Link
+            <a
               key={item.path}
-              to={item.path}
-              aria-current={
-                active ? "page" : undefined
-              }
+              href={item.path}
+              aria-current={isActive ? "page" : undefined}
               className={[
-                "flex min-w-0 flex-1 flex-col items-center justify-center",
-                "gap-0.5 rounded-xl px-1 py-1.5",
-                "text-[10px] font-medium",
-                "transition-colors duration-150",
-                "active:scale-[0.96]",
-                active
+                "flex min-w-[58px] flex-col items-center justify-center gap-1 rounded-xl px-2 py-1.5",
+                "text-[10px] font-medium transition-colors active:scale-[0.96]",
+                isActive
                   ? "text-blue-600"
                   : "text-slate-400 hover:text-slate-700",
               ].join(" ")}
             >
               <span
                 className={[
-                  "flex h-8 w-11 items-center justify-center rounded-xl",
-                  "transition-colors duration-150",
-                  active
-                    ? "bg-blue-50"
-                    : "bg-transparent",
+                  "flex h-7 w-10 items-center justify-center rounded-lg transition-colors",
+                  isActive ? "bg-blue-50" : "bg-transparent",
                 ].join(" ")}
               >
                 <Icon
                   className="h-[17px] w-[17px]"
-                  strokeWidth={active ? 2.2 : 1.8}
+                  strokeWidth={isActive ? 2.3 : 1.9}
                 />
               </span>
 
-              <span className="leading-none">
-                {item.label}
-              </span>
-            </Link>
+              <span>{item.label}</span>
+            </a>
           );
         })}
       </div>
